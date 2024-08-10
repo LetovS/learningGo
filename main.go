@@ -14,10 +14,10 @@ import (
 func main() {
 
 	//newFunction()
-	var deleg func(int, int) int = test
+	//var deleg func(int, int) int = test
 
-	var res = delegate(10, 25, deleg)
-	fmt.Println(res)
+	//var res = delegate(10, 25, deleg)
+	//fmt.Println(res)
 }
 
 func newFunction() {
