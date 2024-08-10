@@ -1,36 +1,37 @@
-package main
-
+/*
+Первая программа
+на языке Go
+*/
+package main // определение пакета для текущего файла
 import (
-	"encoding/json"
-	"net/http"
+	"fmt" // подключение пакета fmt
+	"strconv"
 )
 
-// Структура для ответа
-type Response struct {
-	Message string `json:"message"`
-}
-
+// определение функции main
 func main() {
-	// Роут для обработки GET-запроса на /hello
-	http.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
-		// Создание ответа
-		response := Response{Message: "Hello, World!"}
 
-		// Установка заголовков
-		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusOK)
+	var a string
+	fmt.Println("Enter first value")
+	fmt.Scanln(&a)
 
-		// Кодирование ответа в JSON и отправка его
-		json.NewEncoder(w).Encode(response)
-	})
+	var b string
+	fmt.Println("Enter second value")
+	fmt.Scanln(&b)
 
-	http.HandleFunc("/goodbye", func(w http.ResponseWriter, r *http.Request) {
-		response := Response{Message: "Goodbye!"}
-		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusOK)
-		json.NewEncoder(w).Encode(response)
-	})
+	fmt.Printf("You entered %s and %s\n", a, b)
 
-	// Запуск сервера на порту 8080
-	http.ListenAndServe(":8080", nil)
+	intA, errA := strconv.Atoi(a)
+	if errA != nil {
+		fmt.Println("Ошибка преобразования a:", errA)
+		return
+	}
+
+	intB, errB := strconv.Atoi(b)
+	if errB != nil {
+		fmt.Println("Ошибка преобразования b:", errB)
+		return
+	}
+	fmt.Println(intA + intB)
+
 }
